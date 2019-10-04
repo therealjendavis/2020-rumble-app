@@ -40,6 +40,8 @@ public class MainActivity extends AppCompatActivity {
     boolean rocketLevel1 = false;
     boolean rocketLevel2 = false;
     boolean rocketLevel3 = false;
+    boolean cargoFront = false;
+    boolean cargoSide = false;
     int mainBlockedScores = 0;
     String mainName = "";
     int mainTeam = 0000;
@@ -83,9 +85,9 @@ public class MainActivity extends AppCompatActivity {
     public void allScores(int score, int sand) {
         if (mainStart = true) {
             if (sandStorm = true) {
-                sand++;
+                addOne(sand);
             } else {
-                score++;
+                addOne(score);
             }
         }
     }
@@ -104,33 +106,80 @@ public class MainActivity extends AppCompatActivity {
         booleanTrue(sandStorm);
         stormDelay(15);
     }
-    public void arraySet(String submission[], String location[][]) {
+    public void arraySet(String[] submission, String[][] location) {
         for (int x = 0; x < 6; x++) {
             if (location[x] == null || Integer.parseInt((location[x])[0]) <= (Integer.parseInt(submission[0]) - 6)) {
                 location[x] = submission;
             }
         }
     }
-    public void rocketSet(int score1, int score2, int score3) {
+    public void rocketSet(int score1, int score1SS, int score2, int score2SS,  int score3, int score3SS) {
         if (rocketLevel1 == true) {
-            score1++;
+            allScores(score1, score1SS);
         }
         else if (rocketLevel2 == true) {
-            score2++;
+            allScores(score2, score2SS);
         }
         else if (rocketLevel3 == true) {
-            score3++;
+            allScores(score3, score3SS);
         }
     }
-    public void displaySet(String array[]) {
+    public void displaySet(String[] array) {
         settingsDisplay = array[settingsDisplayNum];
     }
+    public void cargoShipSet(int score1, int score1SS, int score2, int score2SS) {
+        if (cargoSide == true) {
+            allScores(score1, score1SS);
+        }
+        else if (cargoFront == true) {
+            allScores(score2, score2SS);
+        }
+    }
     public void submitButton() {
-        String info[] = {mainName, Integer.toString(mainTeam), Integer.toString(mainMatch), mainAlliance, extrasNotes};
+        String[] info = {mainName, Integer.toString(mainTeam), Integer.toString(mainMatch), mainAlliance, extrasNotes};
         Intent intent = new Intent(this, page2.class);
         startActivity(intent);
     }
 
+    public void csc(View view) {
+        cargoShipSet(mainCSSC, mainCSSCSS, mainCSFC, mainCSFCSS);
+    }
+    public void csh(View view) {
+        cargoShipSet(mainCSSH, mainCSSHSS, mainCSFH, mainCSFHSS);
+    }
+    public void csf(View view) {
+        booleanTrue(cargoFront);
+    }
+    public void css(View view) {
+        booleanTrue(cargoSide);
+    }
+    public void rl1(View view) {
+        booleanTrue(rocketLevel3);
+    }
+    public void rl2(View view) {
+        booleanTrue(rocketLevel2);
+    }
+    public void rl3(View view) {
+        booleanTrue(rocketLevel3);
+    }
+    public void defense(View view) {
+        booleanTrue(mainDefense);
+    }
+    public void start1(View view) {
+        setScoreTo(1, mainStartPosition);
+    }
+    public void start2(View view) {
+        setScoreTo(2, mainStartPosition);
+    }
+    public void end1(View view) {
+        setScoreTo(1, mainEndgame);
+    }
+    public void end2(View view) {
+        setScoreTo(2, mainEndgame);
+    }
+    public void end3(View view) {
+        setScoreTo(3, mainEndgame);
+    }
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
