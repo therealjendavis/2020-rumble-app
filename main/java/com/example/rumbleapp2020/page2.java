@@ -1,33 +1,30 @@
 package com.example.rumbleapp2020;
 
+import android.content.res.Resources;
 import android.os.Bundle;
 
-import com.google.android.material.floatingactionbutton.FloatingActionButton;
-import com.google.android.material.snackbar.Snackbar;
 
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.appcompat.widget.Toolbar;
 
 import android.view.View;
+import android.widget.EditText;
+import android.widget.TextView;
+
+import io.opencensus.common.ServerStatsFieldEnums;
 
 public class page2 extends AppCompatActivity {
+
+    MainActivity mainVariables = new MainActivity();
+//    public void textytime(View location, Resources string, String content) {
+//        TextView nametext = findViewById(location);
+//        nametext.setText(getString(string, content));
+//    }
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_2);
-        Toolbar toolbar = findViewById(R.id.toolbar);
-        setSupportActionBar(toolbar);
-
-        FloatingActionButton fab = findViewById(R.id.fab);
-        fab.setOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View view) {
-                Snackbar.make(view, "Replace with your own action", Snackbar.LENGTH_LONG)
-                        .setAction("Action", null).show();
-            }
-        });
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
 
 }
